@@ -9,6 +9,7 @@ tags : [ExtJS]
 # Extjs 4 chart自定义坐标轴刻度
 ---
 <p>Sencha出品的ExtJs是一个非常优秀的前端框架，尤其是具有里程碑意义的4.0的发布。4.0采用MVC架构和全新的class系统，并且提供了非常丰富的组件。但是，尽管ExtJS如此强大，仍有不尽人意的地方。比如，chart里坐标轴的刻度通常是均匀分布的，ExtJS的实现也是通过坐标轴的最大值和最小值以及其他参数配置均匀的计算刻度。但是，在工作过程中碰到需要自定义刻度的情况，如下图所示</p>
+<!--break-->
 <p><img style="display: block; margin-left: auto; margin-right: auto;" src="http://images.cnitblog.com/i/121167/201406/031012390521791.jpg" alt="" /></p>
 <p>水平轴的刻度是5,10,20这样的不均匀值，但是ExtJS不支持这样的功能（至少我翻遍了文档也没找到）。最初想到的办法是隐藏不需要的label，可这样写：</p>
 <div class="cnblogs_code">

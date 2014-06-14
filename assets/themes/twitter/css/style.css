@@ -103,3 +103,38 @@ body{ background: url("img/body_bg.png") repeat;}
     border-top-right-radius: 7px;
     border-bottom: 1px solid #eee;
 }
+
+.sub-title{
+  margin-left: 20px;
+  color: yellow;
+}
+
+.profile{
+  position: fixed;
+  right: 0px;
+  top: 60px;
+  width: 200px;
+  border-radius: 10px;
+  background-color: #00a9a9;
+  padding: 10px;
+}
+
+.profile .feature{
+  color: #fff;
+}
+
+.profile .name{
+  border-bottom: 1px solid #fff;
+  color: #ffe;
+  font-weight: bold;
+  margin: 5px 1px;
+}
+
+.avatar-wrap{
+  text-align: right;
+}
+
+.profile img{
+  width: 100px;
+  margin-left: 50px;
+}

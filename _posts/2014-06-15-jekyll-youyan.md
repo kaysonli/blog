@@ -22,7 +22,7 @@ tags : [建站]
 	|--themes
 	   |--twitter
 	      |--post.html
-
+<!--break-->
 然后去[有言官网](http://www.uyan.cc/)去注册一个账号，然后获取插件代码，放到youyan这个文件中。
 
 	<div id="uyan_frame"></div>

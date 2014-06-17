@@ -11,7 +11,7 @@ tags : [工具]
 # 你可能不知道的javascript特性
 ---
 
-####比Math.floor性能更好的位操作运算符
+####1. 比Math.floor性能更好的位操作运算符
 
 大家都知道Math.floor可以对数字向下取整。如
 
@@ -34,8 +34,8 @@ tags : [工具]
 	console.log('ab' | 0);		//0
 
 大家可能注意到了，跟 Math.floor 的**向下取整**不同，~~和 |0 只是将小数部分去掉，不管是整数还是负数。而且，后者还支持对非数字类型的值做处理。
-
-####数字的点操作符
+<!--break-->
+####2. 数字的点操作符
 
 大家都知道，javascript对象都可以通过点操作符调用属性或方法。
 
@@ -51,4 +51,50 @@ tags : [工具]
 	2..toString();			//"2"
 	Number(2).toString();	//"2"
 
-未完待续。
+####3. 利用a标签自动解析URL
+
+有时候我们需要从URL中提取域名和查询参数等信息，通常会用字符串操作来实现。其实，通过浏览器对象模型（BOM）可以方便地完成
+
+	var a = document.createElement('a');  
+	a.href = 'http://www.zoneky.com/blog/2014/06/17/javascript-tricks/?name=kayson';  
+ 	console.log(a.host);	//www.zoneky.com
+ 	console.log(a.search);	//?name=kayson
+
+为了方便代码复用，可以将这个功能封装成工具方法:
+
+	function parseURL(url) {  
+	    var a =  document.createElement('a');  
+	    a.href = url;  
+	    return {  
+	        source: url,  
+	        protocol: a.protocol.replace(':',''),  
+	        host: a.hostname,  
+	        port: a.port || '80',  
+	        query: a.search,  
+	        params: (function(){  
+	            var ret = {},  
+	                seg = a.search.replace(/^\?/,'').split('&'),  
+	                len = seg.length, i = 0, s;  
+	            for (;i<len;i++) {  
+	                if (!seg[i]) { continue; }  
+	                s = seg[i].split('=');  
+	                ret[s[0]] = s[1];  
+	            }  
+	            return ret;  
+	        })(),  
+	        hash: a.hash.replace('#',''),  
+	        path: a.pathname.replace(/^([^\/])/,'/$1'),  
+	        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],  
+	        segments: a.pathname.replace(/^\//,'').split('/')  
+	    };  
+	}
+	var pageUrl = parseURL('http://www.zoneky.com/blog/2014/06/17/javascript-tricks/?name=kayson#top');
+	pageUrl.hash;     // = 'top'
+	pageUrl.host;     // = 'www.zoneky.com'
+	pageUrl.query;    // = '?name=kayson'
+	pageUrl.params;   // = Object {name: "kayson"}
+	pageUrl.path;     // = '/blog/2014/06/17/javascript-tricks'
+	pageUrl.segments; // = ["blog", "2014", "06", "17", "javascript-tricks", ""]
+	pageUrl.port;     // = '80'
+	pageUrl.protocol; // = 'http'
+	pageUrl.source;   // = 'http://www.zoneky.com/blog/2014/06/17/javascript-tricks/?name=kayson#top'

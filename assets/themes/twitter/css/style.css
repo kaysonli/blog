@@ -155,3 +155,8 @@ p.game-pic img{
     margin-top: 75px;
   }
 }
+
+.author_sign {
+  border: 1px dashed #ccc;
+  font-style: italic;
+}

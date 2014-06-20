@@ -98,3 +98,59 @@ tags : [工具]
 	pageUrl.port;     // = '80'
 	pageUrl.protocol; // = 'http'
 	pageUrl.source;   // = 'http://www.zoneky.com/blog/2014/06/17/javascript-tricks/?name=kayson#top'
+
+####4. 神奇的NaN
+
+NaN是个神奇的对象，它表示"Not a number"，但是它的类型又是number：
+
+	console.log(typeof NaN); // "number"
+
+有些操作会产生NaN，如：
+
+	Math.sqrt(-5);
+	Math.log(-1);
+	0/0;
+	parseFloat('abc');
+
+当比较两个值为NaN的数字时，奇迹发生了：
+	
+	var x = Math.sqrt(-2);
+	var y = Math.log(-1);
+	console.log(x == y);      // false
+
+你可能觉得，是不是操作不同导致的？那么请看：
+
+	var x = Math.sqrt(-2);
+	var y = Math.sqrt(-2);
+	console.log(x == y);      // false
+
+好吧，再直接一点：
+
+	var x = Math.sqrt(-2);
+	console.log(x == x);      // false
+
+甚至：
+
+	console.log(NaN == NaN);	//false
+
+无语了，NaN到底是个什么东东？它都不是它自己了，怎样判断一个结果是不是NaN？，别急，有个方法：
+
+	console.log(isNaN(NaN));     // true
+
+但是，有可能得到你不想要的结果：
+	
+	console.log(isNaN('abc'));    // true
+	console.log(isNaN(['x']));    // true
+	console.log(isNaN({}));       // true
+
+'abc', ['x'], {}这些都“不是数字”，所以就返回true了。所以需要另找方法。
+
+	var Util = {
+	  isNaN: function (x) { return x !== x; }	//比较巧妙，不等于自身的也就只有NaN了
+	}
+
+	var Util = {
+	  isNaN: function (x) { 
+	  	return typeof x === 'number' && isNaN(x); //加上类型判断
+	  }
+	}

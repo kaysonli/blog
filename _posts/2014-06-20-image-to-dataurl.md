@@ -28,6 +28,32 @@ DataURL是现代浏览器支持的一种引用图片的方式，它将图片数�
 		}
 		imageReader.readAsDataURL(myFiles[0]);
 	}
-*选择图片*
+
 <input type="file" id="input" onchange="imagesSelected(this.files)" />
-<img id="imgSelecte" />
+
+<p>
+	<img id="display" style="width: 40%;" />
+</p>
+
+DataURL如下:
+
+<pre id="dataUrl" style="height: 200px; overflow: auto;" onselect="">
+	
+</pre>
+
+***注***:本页需在IE10，chrome，Firefox等现代浏览器上浏览。
+
+<script type="text/javascript">
+	function imagesSelected(myFiles) {
+		var imageReader = new FileReader();
+		imageReader.onload = function(e) {
+		    var dataUrl = e.target.result;
+		    var display = document.getElementById('display');
+		    display.src = dataUrl;
+		    var output = document.getElementById('dataUrl');
+		    output.innerHTML = dataUrl;
+		    console.log(dataUrl);
+		}
+		imageReader.readAsDataURL(myFiles[0]);
+	}
+</script>

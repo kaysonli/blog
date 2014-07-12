@@ -25,11 +25,11 @@ tags : [算法]
 
 <!--break-->
 
-*原图：*
+`原图：`
 
 ![](http://www.zoneky.com/images/hellogreen.png)
 
-*转换成ASCII后：*
+`转换成ASCII后：`
 
 ![](http://www.zoneky.com/images/ascii_sample.jpg)
 
@@ -41,7 +41,7 @@ tags : [算法]
 
 在页面里添加一个file标签，用来读取本地图片文件。一个img标签，用来显示图片。一个canvas，图像处理的中介。一个pre标签，用来显示最终的字符集合。
 
-*HTML*
+`HTML`
 
     <input type="file" id="input" onchange="imagesSelected(this.files)" />
     <p>
@@ -51,7 +51,7 @@ tags : [算法]
     <div class="clear"><input type="button" id="btnASCII" value="字符画" /></div>
     <pre id="ascii"></pre>
 
-*JavaScript*
+`JavaScript`
 
     function imagesSelected(myFiles) {
         var imageReader = new FileReader();
@@ -67,7 +67,7 @@ tags : [算法]
 
 灰度值 = R * 0.3 + G * 0.59 + B * 0.11，也可以直接用平均值(R + G + B)/3.
 
-<pre>
+```
     var canvas = document.getElementById('canvas');
     var display = document.getElementById('display');
     canvas.width = display.width;
@@ -88,13 +88,13 @@ tags : [算法]
       data[i + 2] = gray;
       data[i + 3] = A;
     };
-</pre>
+```
 
-##### 构造*字符-灰度值*对应表
+##### 构造`字符-灰度值`对应表
 
 为了方便快速判断某个灰度值对应的字符，预先构造一个map，这样访问就非常快。
 
-<pre>
+```
     function getCharsMap() {
       var chars = ['@', 'w', '#', '$', 'k', 'd', 't', 'j', 'i', '.', '&nbsp;'];
       var step = 25,
@@ -105,13 +105,13 @@ tags : [算法]
       };
       return map;
     }
-</pre>
+```
 
 ##### 将图片分解成小块
 
 分解得越细，最终的效果越接近原图，但相应地需要更多字符个数。可以根据需要来选择。
 
-<pre>
+```
     function ascii(context, width, height, rowChars) {
       var pixels = [],
         map = getCharsMap(),
@@ -136,11 +136,11 @@ tags : [算法]
       };
       return output;
     }
-</pre>
+```
 
 ##### 计算每个小块的平均灰度
 
-<pre>
+```
     function getBlockInfo(imageData, x, y, w, h) {
       var sumGray = 0,
         sumR = 0,
@@ -169,7 +169,7 @@ tags : [算法]
         color: [sumR / pixelCount, sumG / pixelCount, sumB / pixelCount]
       };
     }
-</pre>
+```
 
 ##### 显示最终结果
 

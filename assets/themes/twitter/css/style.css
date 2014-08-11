@@ -160,3 +160,40 @@ p.game-pic img{
   border: 1px dashed #ccc;
   font-style: italic;
 }
+
+#tablecellexamples td, #tablecellexamples div {
+  border: 1px solid black;
+  width: 20em;
+  padding: 0 0.5em;
+  line-height: 97%;
+  font-size: 90%;
+  background-color: #ffe;
+}
+
+#tablecellexamples table, #tablecellexamples div {
+  height: 4em;
+  border-spacing: 2px;
+}
+
+img.align-demo {
+  width: 180px;
+  height: 180px;
+}
+
+#myoutercontainer {
+  position: relative;
+  height: 13em;
+  border: 1px solid black;
+}
+
+#myinnercontainer {
+  position: absolute;
+  top: 50%;
+  height: 6em;
+  margin-top: -3em;
+}
+
+#myoutercontainer2 {
+  line-height: 4em;
+  border: 1px solid black;
+}

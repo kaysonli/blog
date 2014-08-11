@@ -55,7 +55,7 @@ tags : [CSS布局]
 
 这段文字中，图片使用`vertical-align:bottom` <img class="align-demo" src="{{ BASE_PATH }}/image/weixin2.png" alt="" style="vertical-align: bottom" />
 
-<p>In this paragraph, I have a cute little <code>&lt;span&gt;</code> <span style="display:inline-block; vertical-align:middle">display:inline-block<br>vertical-align:middle</span> and <span style="display:inline-block; vertical-align:text-bottom">display:inline-block<br>vertical-align:text-bottom</span> as an example.</p>
+<p>In this paragraph, I have a cute little <code>&lt;span&gt;</code> <span style="display:inline-block; vertical-align:middle;border: 1px solid red;">display:inline-block<br>vertical-align:middle</span> and <span style="display:inline-block; vertical-align:text-bottom;border: 1px solid red;">display:inline-block<br>vertical-align:text-bottom</span> as an example.</p>
 
 可以看出，这里的`vertical-align`把文字当做基准线来对齐。
 
